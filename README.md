@@ -34,4 +34,4 @@ This method takes a term parameter and uses the Term.java compareTo(Term obj) me
 **public boolean equals(Object other)**
 This method takes a polynomial parameter and compares it with the current polynomial. If both polynomials are the exact same, it returns true, otherwise returns false.
 
-NOTE: use pull requests if there is a significant issue with the API, or if there is an efficiency boost with the suggestion
+NOTE: use pull requests if there is a significant issue with the API, or if there is an efficiency boost with the suggestion.
