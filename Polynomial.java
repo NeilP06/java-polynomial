@@ -15,11 +15,11 @@ public class Polynomial implements Comparable<Term> {
      */
     public void addTerm(int coefficient, int power) {
         Term term = new Term(coefficient, power);
-        ListIterator<Term> iter = main.listIterator();
-        while (iter.hasNext()) {
-            iter.next();
+        ListIterator<Term> iterator = main.listIterator();
+        while (iterator.hasNext()) {
+            iterator.next();
         }
-        iter.add(term);
+        iterator.add(term);
     }
 
     /**
@@ -46,6 +46,29 @@ public class Polynomial implements Comparable<Term> {
     }
 
     /**
+     * removes a certain term of the polynomial list (specified from the index parameter),
+     * and throws an exception if the index is out of range:
+     * @param index
+     * @return removed term
+     */
+    public Term removeTerm(int index) {
+        ListIterator<Term> iterator = main.listIterator();
+        int count = 0;
+        // calls size() for error checking to ensure no crashes:
+        if (index > this.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        while (iterator.hasNext() && count != index) {
+            iterator.next();
+            count++;
+        }
+        // stores removed term as a object:
+        Term term = iterator.next();
+        iterator.remove();
+        return term;
+    }
+
+    /**
      * passes a polynomial through a parameter and the product of both polynomials
      * are stored through another polynomial list:
      * @param p
@@ -67,6 +90,34 @@ public class Polynomial implements Comparable<Term> {
         // calls simplify() method for organization:
         product.simplify();
         return product;
+    }
+
+    /**
+     * fetches a certain term of the polynomial list (specified from the index parameter),
+     * and throws an exception if the index is out of range:
+     * @param index
+     * @return term
+     */
+    public Term getTerm(int index) {
+        ListIterator<Term> iterator = main.listIterator();
+        int count = 0;
+        // calls size() for error checking to ensure no crashes:
+        if (index > this.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        while (iterator.hasNext() && count != index) {
+            iterator.next();
+            count++;
+        }
+        return iterator.next();
+    }
+
+    /**
+     * returns the size of the current polynomial list:
+     * @return size of polynomial list
+     */
+    public int size() {
+        return main.size();
     }
 
     /**
